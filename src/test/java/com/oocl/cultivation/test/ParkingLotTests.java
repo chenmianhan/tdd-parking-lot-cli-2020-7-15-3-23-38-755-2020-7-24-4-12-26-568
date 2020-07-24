@@ -94,4 +94,19 @@ public class ParkingLotTests {
         //then
         assertNull(fetchCar);
     }
+
+    @Test
+    void should_fetch_null_car_when_fetch_given_used_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car parkedCar = new Car();
+        Ticket usedTicket=parkingLot.park(parkedCar);
+        Car fetchCar = parkingLot.fetch(usedTicket);
+
+        //when
+        Car fetchAgainCar=parkingLot.fetch(usedTicket);
+
+        //then
+        assertNull(fetchAgainCar);
+    }
 }
