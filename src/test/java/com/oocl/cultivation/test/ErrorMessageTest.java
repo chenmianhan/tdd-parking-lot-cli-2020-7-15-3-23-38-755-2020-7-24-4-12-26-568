@@ -23,15 +23,17 @@ public class ErrorMessageTest {
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_ticket_and_query_message() {
+    void should_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
         //when
-        parkingBoy.park(new Car());
-        parkingBoy.fetch(null);
+        Ticket usedTicket=parkingBoy.park(new Car());
+        parkingBoy.fetch(usedTicket);
+        parkingBoy.fetch(usedTicket);
 
         //then
         assertEquals("Unrecognized parking ticket.", parkingBoy.getErrorMessage());
     }
+
 }

@@ -24,4 +24,5 @@ public class ParkingBoy {
     public String getErrorMessage() {
         return errorMessageRecord.getMessage();
     }
+
 }
