@@ -1,6 +1,7 @@
 package com.oocl.cultivation.test;
 
 import com.oocl.cultivation.Car;
+import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
 import org.junit.jupiter.api.Test;
@@ -15,11 +16,11 @@ public class ParkingLotTests {
     @Test
     void should_return_ticket_when_parking_car_given_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         Car car = new Car();
 
         //when
-        Ticket carTicket = parkingLot.park(car);
+        Ticket carTicket = parkingBoy.park(car);
 
         //then
         assertNotNull(carTicket);
@@ -28,12 +29,12 @@ public class ParkingLotTests {
     @Test
     void should_fetch_car_when_fetching_car_given_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
-        Ticket carTicket = parkingLot.park(parkedCar);
+        Ticket carTicket = parkingBoy.park(parkedCar);
 
         //when
-        Car fetchedCar = parkingLot.fetch(carTicket);
+        Car fetchedCar = parkingBoy.fetch(carTicket);
 
         //then
         assertNotNull(fetchedCar);
@@ -43,7 +44,7 @@ public class ParkingLotTests {
     @Test
     void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         List<Car> parkedCars = new LinkedList<>();
         List<Ticket> tickets = new LinkedList<>();
         int carNumber = 10;
@@ -53,11 +54,11 @@ public class ParkingLotTests {
 
         //when
         for (Car car : parkedCars) {
-            tickets.add(parkingLot.park(car));
+            tickets.add(parkingBoy.park(car));
         }
         List<Car> fetchedCars = new LinkedList<>();
         for (Ticket ticket : tickets) {
-            fetchedCars.add(parkingLot.fetch(ticket));
+            fetchedCars.add(parkingBoy.fetch(ticket));
         }
 
         //then
@@ -69,13 +70,13 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
-        parkingLot.park(parkedCar);
+        parkingBoy.park(parkedCar);
         Ticket wrongTicket = new Ticket();
 
         //when
-        Car fetchCar = parkingLot.fetch(wrongTicket);
+        Car fetchCar = parkingBoy.fetch(wrongTicket);
 
         //then
         assertNull(fetchCar);
@@ -84,12 +85,12 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_no_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
-        parkingLot.park(parkedCar);
+        parkingBoy.park(parkedCar);
 
         //when
-        Car fetchCar = parkingLot.fetch(null);
+        Car fetchCar = parkingBoy.fetch(null);
 
         //then
         assertNull(fetchCar);
@@ -98,13 +99,13 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_used_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
-        Ticket usedTicket = parkingLot.park(parkedCar);
-        parkingLot.fetch(usedTicket);
+        Ticket usedTicket = parkingBoy.park(parkedCar);
+        parkingBoy.fetch(usedTicket);
 
         //when
-        Car fetchAgainCar = parkingLot.fetch(usedTicket);
+        Car fetchAgainCar = parkingBoy.fetch(usedTicket);
 
         //then
         assertNull(fetchAgainCar);
@@ -114,17 +115,17 @@ public class ParkingLotTests {
     void should_return_null_ticket_when_park_car_given_parking_lot_full_capacity() {
         //given
         int carNumber=10;
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
         List<Car> parkedCars = new LinkedList<>();
         for (int i = 0; i < carNumber; i++) {
             parkedCars.add(new Car());
         }
         for (Car car : parkedCars) {
-            parkingLot.park(car);
+            parkingBoy.park(car);
         }
 
         //when
-        Ticket ticket=parkingLot.park(new Car());
+        Ticket ticket=parkingBoy.park(new Car());
 
         //then
         assertNull(ticket);
