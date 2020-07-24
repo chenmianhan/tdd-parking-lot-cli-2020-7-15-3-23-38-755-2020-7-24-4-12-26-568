@@ -19,6 +19,7 @@ public class ErrorMessageTest {
         parkingBoy.fetch(new Ticket());
 
         //then
-        assertEquals("Unrecognized parking ticket",parkingBoy.getErrorMeassge());
+        assertEquals("Unrecognized parking ticket.",parkingBoy.getErrorMessage());
     }
+
 }
