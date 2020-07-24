@@ -15,7 +15,8 @@ public class ParkingLotTests {
     @Test
     void should_return_ticket_when_parking_car_given_car() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         Car car = new Car();
 
         //when
@@ -28,7 +29,8 @@ public class ParkingLotTests {
     @Test
     void should_fetch_car_when_fetching_car_given_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         Car parkedCar = new Car();
         Ticket carTicket = parkingLot.park(parkedCar);
 
@@ -43,7 +45,8 @@ public class ParkingLotTests {
     @Test
     void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         List<Car> parkedCars = new LinkedList<>();
         List<Ticket> tickets = new LinkedList<>();
         int carNumber = 10;
@@ -69,7 +72,8 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         Car parkedCar = new Car();
         parkingLot.park(parkedCar);
         Ticket wrongTicket = new Ticket();
@@ -84,7 +88,8 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_no_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         Car parkedCar = new Car();
         parkingLot.park(parkedCar);
 
@@ -98,7 +103,8 @@ public class ParkingLotTests {
     @Test
     void should_fetch_null_car_when_fetch_given_used_ticket() {
         //given
-        ParkingLot parkingLot = new ParkingLot();
+        int capacity = 10;
+        ParkingLot parkingLot = new ParkingLot(capacity);
         Car parkedCar = new Car();
         Ticket usedTicket = parkingLot.park(parkedCar);
         parkingLot.fetch(usedTicket);
@@ -114,7 +120,7 @@ public class ParkingLotTests {
     void should_return_null_ticket_when_park_car_given_parking_lot_full_capacity() {
         //given
         int capacity=10;
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = new ParkingLot(capacity);
         List<Car> parkedCars = new LinkedList<>();
         for (int i = 0; i < capacity; i++) {
             parkedCars.add(new Car());
