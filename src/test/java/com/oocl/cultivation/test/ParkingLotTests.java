@@ -100,11 +100,11 @@ public class ParkingLotTests {
         //given
         ParkingLot parkingLot = new ParkingLot();
         Car parkedCar = new Car();
-        Ticket usedTicket=parkingLot.park(parkedCar);
-        Car fetchCar = parkingLot.fetch(usedTicket);
+        Ticket usedTicket = parkingLot.park(parkedCar);
+        parkingLot.fetch(usedTicket);
 
         //when
-        Car fetchAgainCar=parkingLot.fetch(usedTicket);
+        Car fetchAgainCar = parkingLot.fetch(usedTicket);
 
         //then
         assertNull(fetchAgainCar);
