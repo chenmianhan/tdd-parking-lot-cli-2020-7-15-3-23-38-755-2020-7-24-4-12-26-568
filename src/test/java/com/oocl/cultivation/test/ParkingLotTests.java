@@ -109,4 +109,24 @@ public class ParkingLotTests {
         //then
         assertNull(fetchAgainCar);
     }
+
+    @Test
+    void should_return_null_ticket_when_park_car_given_parking_lot_full_capacity() {
+        //given
+        int capacity=10;
+        ParkingLot parkingLot = new ParkingLot();
+        List<Car> parkedCars = new LinkedList<>();
+        for (int i = 0; i < capacity; i++) {
+            parkedCars.add(new Car());
+        }
+        for (Car car : parkedCars) {
+            parkingLot.park(car);
+        }
+
+        //when
+        Ticket ticket=parkingLot.park(new Car());
+
+        //then
+        assertNull(ticket);
+    }
 }
