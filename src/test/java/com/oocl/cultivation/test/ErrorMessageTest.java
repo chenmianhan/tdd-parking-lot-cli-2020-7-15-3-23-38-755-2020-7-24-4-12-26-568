@@ -6,6 +6,9 @@ import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ErrorMessageTest {
@@ -49,4 +52,20 @@ public class ErrorMessageTest {
         assertEquals("Please provide your parking ticket.", parkingBoy.getErrorMessage());
     }
 
+    @Test
+    void should_return_not_enough_position_when_park_car_then_parking_lot_full_and_query_message() {
+        //given
+        int capacity=10;
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(capacity));
+        for(int i =0;i<capacity;i++){
+            parkingBoy.park(new Car());
+        }
+        parkingBoy.park(new Car());
+
+        //when
+        Ticket usedTicket = parkingBoy.park(new Car());
+
+        //then
+        assertEquals("Not enough position.", parkingBoy.getErrorMessage());
+    }
 }
