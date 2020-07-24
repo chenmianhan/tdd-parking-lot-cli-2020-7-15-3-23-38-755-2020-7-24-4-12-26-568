@@ -28,7 +28,7 @@ public class ErrorMessageTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
         //when
-        Ticket usedTicket=parkingBoy.park(new Car());
+        Ticket usedTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(usedTicket);
         parkingBoy.fetch(usedTicket);
 
@@ -42,7 +42,7 @@ public class ErrorMessageTest {
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
 
         //when
-        Ticket usedTicket=parkingBoy.park(new Car());
+        Ticket usedTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(null);
 
         //then

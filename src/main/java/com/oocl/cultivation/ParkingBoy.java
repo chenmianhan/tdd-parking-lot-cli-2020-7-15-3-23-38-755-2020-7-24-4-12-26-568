@@ -15,9 +15,14 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket carTicket) {
-        if (parkingLot.isTicketNull(carTicket) || !parkingLot.isTicketRight(carTicket)) {
+        if (parkingLot.isTicketNull(carTicket)) {
+            errorMessageRecord.setMessage("Please provide your parking ticket.");
+            return null;
+        }
+        if (!parkingLot.isTicketRight(carTicket)) {
             errorMessageRecord.setMessage("Unrecognized parking ticket.");
             return null;
+
         } else return parkingLot.fetch(carTicket);
     }
 
