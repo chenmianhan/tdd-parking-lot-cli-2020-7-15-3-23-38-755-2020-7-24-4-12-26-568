@@ -10,13 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ParkingBoyTests {
     @Test
     void should_return_ticket_when_parking_car_given_car() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car car = new Car();
 
         //when
@@ -29,7 +28,7 @@ class ParkingBoyTests {
     @Test
     void should_fetch_car_when_fetching_car_given_ticket() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
         Ticket carTicket = parkingBoy.park(parkedCar);
 
@@ -44,7 +43,7 @@ class ParkingBoyTests {
     @Test
     void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         List<Car> parkedCars = new LinkedList<>();
         List<Ticket> tickets = new LinkedList<>();
         int carNumber = 10;
@@ -70,7 +69,7 @@ class ParkingBoyTests {
     @Test
     void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
         parkingBoy.park(parkedCar);
         Ticket wrongTicket = new Ticket();
@@ -85,7 +84,7 @@ class ParkingBoyTests {
     @Test
     void should_fetch_null_car_when_fetch_given_no_ticket() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
         parkingBoy.park(parkedCar);
 
@@ -99,7 +98,7 @@ class ParkingBoyTests {
     @Test
     void should_fetch_null_car_when_fetch_given_used_ticket() {
         //given
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car parkedCar = new Car();
         Ticket usedTicket = parkingBoy.park(parkedCar);
         parkingBoy.fetch(usedTicket);
@@ -114,8 +113,8 @@ class ParkingBoyTests {
     @Test
     void should_return_null_ticket_when_park_car_given_parking_lot_full_capacity() {
         //given
-        int carNumber=10;
-        ParkingBoy parkingBoy=new ParkingBoy(new ParkingLot());
+        int carNumber = 10;
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         List<Car> parkedCars = new LinkedList<>();
         for (int i = 0; i < carNumber; i++) {
             parkedCars.add(new Car());
@@ -125,7 +124,7 @@ class ParkingBoyTests {
         }
 
         //when
-        Ticket ticket=parkingBoy.park(new Car());
+        Ticket ticket = parkingBoy.park(new Car());
 
         //then
         assertNull(ticket);

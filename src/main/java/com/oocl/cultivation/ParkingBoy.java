@@ -5,7 +5,7 @@ public class ParkingBoy {
     private final ParkingLot parkingLot;
 
     public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot=parkingLot;
+        this.parkingLot = parkingLot;
     }
 
     public Ticket park(Car car) {
@@ -13,6 +13,9 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket carTicket) {
-        return parkingLot.fetch(carTicket);
+        if(parkingLot.isTicketNull(carTicket)||!parkingLot.isTicketRight(carTicket))
+            return null;
+        else return parkingLot.fetch(carTicket);
     }
+
 }

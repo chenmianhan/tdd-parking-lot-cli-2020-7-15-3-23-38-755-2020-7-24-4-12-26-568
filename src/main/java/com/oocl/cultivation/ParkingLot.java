@@ -26,4 +26,12 @@ public class ParkingLot {
     public Car fetch(Ticket carTicket) {
         return parkingMap.remove(carTicket);
     }
+
+    public boolean isTicketRight(Ticket carTicket) {
+        return parkingMap.containsKey(carTicket);
+    }
+
+    public boolean isTicketNull(Ticket carTicket) {
+        return carTicket == null;
+    }
 }
