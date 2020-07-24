@@ -61,8 +61,8 @@ public class ParkingLotTests {
         }
 
         //then
-        for (int i = 0; i <carNumber; i++) {
-            assertEquals(fetchedCars.get(i),parkedCars.get(i));
+        for (int i = 0; i < carNumber; i++) {
+            assertEquals(fetchedCars.get(i), parkedCars.get(i));
         }
     }
 
@@ -72,10 +72,24 @@ public class ParkingLotTests {
         ParkingLot parkingLot = new ParkingLot();
         Car parkedCar = new Car();
         parkingLot.park(parkedCar);
-        Ticket wrongTicket=new Ticket();
+        Ticket wrongTicket = new Ticket();
 
         //when
-        Car fetchCar=parkingLot.fetch(wrongTicket);
+        Car fetchCar = parkingLot.fetch(wrongTicket);
+
+        //then
+        assertNull(fetchCar);
+    }
+
+    @Test
+    void should_fetch_null_car_when_fetch_given_no_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        Car parkedCar = new Car();
+        parkingLot.park(parkedCar);
+
+        //when
+        Car fetchCar = parkingLot.fetch(null);
 
         //then
         assertNull(fetchCar);
