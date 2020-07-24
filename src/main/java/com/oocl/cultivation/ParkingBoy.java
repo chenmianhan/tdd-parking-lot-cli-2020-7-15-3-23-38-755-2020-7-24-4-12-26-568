@@ -11,6 +11,10 @@ public class ParkingBoy {
     }
 
     public Ticket park(Car car) {
+        if(parkingLot.isFull()){
+            errorMessageRecord.setMessage("Not enough position.");
+            return null;
+        }
         return parkingLot.park(car);
     }
 

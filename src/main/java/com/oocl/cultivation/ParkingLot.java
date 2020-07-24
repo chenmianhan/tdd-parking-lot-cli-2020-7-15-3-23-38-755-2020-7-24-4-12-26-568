@@ -17,7 +17,6 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-        if (capacity <= parkingMap.size()) return null;
         Ticket carTicket = new Ticket();
         parkingMap.put(carTicket, car);
         return carTicket;
@@ -33,5 +32,8 @@ public class ParkingLot {
 
     public boolean isTicketNull(Ticket carTicket) {
         return carTicket == null;
+    }
+    public boolean isFull(){
+        return capacity<=parkingMap.size();
     }
 }
