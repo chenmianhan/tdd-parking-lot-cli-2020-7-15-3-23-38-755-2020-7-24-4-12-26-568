@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 class ParkingBoyFacts {
     @Test
-    void write_your_first_test() {
+    void should_return_ticket_when_parking_car_given_car() {
+
 
     }
 }
