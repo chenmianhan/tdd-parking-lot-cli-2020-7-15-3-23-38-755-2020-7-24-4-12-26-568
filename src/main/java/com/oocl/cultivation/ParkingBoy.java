@@ -18,4 +18,7 @@ public class ParkingBoy {
         else return parkingLot.fetch(carTicket);
     }
 
+    public String getErrorMeassge() {
+        return null;
+    }
 }
