@@ -175,7 +175,7 @@ class StandardParkingBoyTest {
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
     }
     @Test
-    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_no_provide_the_ticket_and_query_message() {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());

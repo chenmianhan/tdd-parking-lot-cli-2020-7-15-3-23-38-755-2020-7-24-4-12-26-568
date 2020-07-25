@@ -6,9 +6,10 @@ public class StandardParkingBoy {
 
     private final List<ParkingLot> parkingLots;
     private final MessageRecord errorMessageRecord;
+
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
-        errorMessageRecord=new ErrorMessageRecord();
+        errorMessageRecord = new ErrorMessageRecord();
     }
 
     public Ticket park(Car car) {
@@ -24,17 +25,23 @@ public class StandardParkingBoy {
     }
 
     public Car fetch(Ticket carTicket) {
-        Car fetchedCar=null;
+        Car fetchedCar = null;
 
-        for (ParkingLot parkingLot: parkingLots) {
+            if (carTicket==null) {
+                errorMessageRecord.setMessage("Please provide your parking ticket.");
+                return null;
+            }
+
+
+        for (ParkingLot parkingLot : parkingLots) {
             if (!parkingLot.isTicketRight(carTicket)) {
                 errorMessageRecord.setMessage("Unrecognized parking ticket.");
                 return null;
-        }
+            }
         }
         for (ParkingLot parkingLot : parkingLots) {
-            fetchedCar=parkingLot.fetch(carTicket);
-            if(fetchedCar!=null)break;
+            fetchedCar = parkingLot.fetch(carTicket);
+            if (fetchedCar != null) break;
         }
         return fetchedCar;
     }
