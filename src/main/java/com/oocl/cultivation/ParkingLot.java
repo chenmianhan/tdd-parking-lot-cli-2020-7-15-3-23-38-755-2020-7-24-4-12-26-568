@@ -5,15 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    private final Map<Ticket, Car> parkingMap = new HashMap<>();
+    private final Map<Ticket, Car> parkingMap;
     private final int capacity;
 
     public ParkingLot(int i) {
         capacity = i;
+        parkingMap = new HashMap<>();
     }
 
     public ParkingLot() {
         capacity = 10;
+        parkingMap = new HashMap<>();
     }
 
     public Ticket park(Car car) {
@@ -33,8 +35,9 @@ public class ParkingLot {
     public boolean isTicketNull(Ticket carTicket) {
         return carTicket == null;
     }
-    public boolean isFull(){
-        return capacity<=parkingMap.size();
+
+    public boolean isFull() {
+        return capacity <= parkingMap.size();
     }
 
     public int getCurStock() {
