@@ -64,5 +64,22 @@ class StandardParkingBoyTest {
         assertNotNull(carTicket);
     }
 
+    @Test
+    void should_fetch_car_when_fetching_car_given_ticket() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        Car parkedCar = new Car();
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        Ticket carTicket = standardParkingBoy.park(parkedCar);
+
+        //when
+        Car fetchedCar = standardParkingBoy.fetch(carTicket);
+
+        //then
+        assertNotNull(fetchedCar);
+        assertEquals(fetchedCar, parkedCar);
+    }
 
 }

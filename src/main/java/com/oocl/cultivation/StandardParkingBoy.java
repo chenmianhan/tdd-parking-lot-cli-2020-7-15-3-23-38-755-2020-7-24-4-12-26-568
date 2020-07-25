@@ -22,4 +22,7 @@ public class StandardParkingBoy {
         return ticket;
     }
 
+    public Car fetch(Ticket carTicket) {
+        return null;
+    }
 }
