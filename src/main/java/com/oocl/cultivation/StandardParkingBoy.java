@@ -24,12 +24,19 @@ public class StandardParkingBoy {
     }
 
     public Car fetch(Ticket carTicket) {
-        Car fethedCar=null;
-        for (ParkingLot parkingLot : parkingLots) {
-            fethedCar=parkingLot.fetch(carTicket);
-            if(fethedCar!=null)break;
+        Car fetchedCar=null;
+
+        for (ParkingLot parkingLot: parkingLots) {
+            if (!parkingLot.isTicketRight(carTicket)) {
+                errorMessageRecord.setMessage("Unrecognized parking ticket.");
+                return null;
         }
-        return fethedCar;
+        }
+        for (ParkingLot parkingLot : parkingLots) {
+            fetchedCar=parkingLot.fetch(carTicket);
+            if(fetchedCar!=null)break;
+        }
+        return fetchedCar;
     }
 
     public String getErrorMessage() {

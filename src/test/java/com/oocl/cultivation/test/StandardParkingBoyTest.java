@@ -158,5 +158,35 @@ class StandardParkingBoyTest {
         //then
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
     }
+    @Test
+    void should_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
 
+        //when
+        Ticket usedTicket = standardParkingBoy.park(new Car());
+        standardParkingBoy.fetch(usedTicket);
+        standardParkingBoy.fetch(usedTicket);
+
+        //then
+        assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
+    }
+    @Test
+    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
+        //when
+        Ticket usedTicket = standardParkingBoy.park(new Car());
+        standardParkingBoy.fetch(null);
+
+        //then
+        assertEquals("Please provide your parking ticket.", standardParkingBoy.getErrorMessage());
+    }
 }
