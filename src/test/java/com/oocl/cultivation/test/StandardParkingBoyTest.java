@@ -137,4 +137,26 @@ class StandardParkingBoyTest {
         Ticket usedTicket = standardParkingBoy.park(parkedCar);
         standardParkingBoy.fetch(usedTicket);
 
+        //when
+        Car fetchAgainCar = standardParkingBoy.fetch(usedTicket);
+
+        //then
+        assertNull(fetchAgainCar);
+    }
+    @Test
+    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
+        //when
+        standardParkingBoy .park(new Car());
+        standardParkingBoy .fetch(new Ticket());
+
+        //then
+        assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
+    }
+
 }
