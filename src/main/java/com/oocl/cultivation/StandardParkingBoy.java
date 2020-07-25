@@ -14,12 +14,17 @@ public class StandardParkingBoy {
 
     public Ticket park(Car car) {
         Ticket ticket = null;
+        boolean isAllFull = true;
         for (ParkingLot parkLot : parkingLots) {
             if (!parkLot.isFull()) {
                 ticket = parkLot.park(car);
+                isAllFull = false;
                 break;
             }
-
+        }
+        if (isAllFull) {
+            errorMessageRecord.setMessage("Not enough position.");
+            return null;
         }
         return ticket;
     }
@@ -27,10 +32,10 @@ public class StandardParkingBoy {
     public Car fetch(Ticket carTicket) {
         Car fetchedCar = null;
 
-            if (carTicket==null) {
-                errorMessageRecord.setMessage("Please provide your parking ticket.");
-                return null;
-            }
+        if (carTicket == null) {
+            errorMessageRecord.setMessage("Please provide your parking ticket.");
+            return null;
+        }
 
 
         for (ParkingLot parkingLot : parkingLots) {
