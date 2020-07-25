@@ -126,5 +126,15 @@ class StandardParkingBoyTest {
         //then
         assertNull(fetchCar);
     }
+    @Test
+    void should_fetch_null_car_when_fetch_given_used_ticket() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        Car parkedCar = new Car();
+        Ticket usedTicket = standardParkingBoy.park(parkedCar);
+        standardParkingBoy.fetch(usedTicket);
 
 }
