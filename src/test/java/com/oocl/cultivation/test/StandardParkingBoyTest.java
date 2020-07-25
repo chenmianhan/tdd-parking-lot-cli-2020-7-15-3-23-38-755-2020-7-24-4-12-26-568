@@ -30,6 +30,23 @@ class StandardParkingBoyTest {
         //then
         assertEquals(5, parkingLots.get(0).getCurStock());
         assertEquals(0, parkingLots.get(1).getCurStock());
+    }
 
+    @Test
+    void should_parking_at_the_second_parking_lot_when_parking_car_given_the_first_parking_lot_full_11_cars() {
+        //given
+        int carNumber = 11;
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+
+        //when
+        for (int i = 0; i < carNumber; i++)
+            standardParkingBoy.park(new Car());
+
+        //then
+        assertEquals(10, parkingLots.get(0).getCurStock());
+        assertEquals(1, parkingLots.get(1).getCurStock());
     }
 }
