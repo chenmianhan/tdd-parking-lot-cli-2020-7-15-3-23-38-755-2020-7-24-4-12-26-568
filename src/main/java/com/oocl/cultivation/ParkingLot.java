@@ -36,4 +36,8 @@ public class ParkingLot {
     public boolean isFull(){
         return capacity<=parkingMap.size();
     }
+
+    public int getCurStock() {
+        return 0;
+    }
 }
