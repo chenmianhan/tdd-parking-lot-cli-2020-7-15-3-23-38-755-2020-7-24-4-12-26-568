@@ -38,6 +38,6 @@ public class ParkingLot {
     }
 
     public int getCurStock() {
-        return 0;
+        return parkingMap.size();
     }
 }
