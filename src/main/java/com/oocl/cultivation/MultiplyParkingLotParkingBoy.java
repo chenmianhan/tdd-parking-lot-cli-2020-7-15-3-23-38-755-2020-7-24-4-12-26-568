@@ -10,4 +10,8 @@ public class MultiplyParkingLotParkingBoy {
     public Car fetch(Ticket ticket) {
         return null;
     }
+
+    public String getErrorMessage() {
+        return null;
+    }
 }
