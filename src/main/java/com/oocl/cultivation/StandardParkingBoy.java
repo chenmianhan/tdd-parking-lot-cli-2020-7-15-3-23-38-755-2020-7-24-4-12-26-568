@@ -5,9 +5,10 @@ import java.util.List;
 public class StandardParkingBoy {
 
     private final List<ParkingLot> parkingLots;
-
+    private final MessageRecord errorMessageRecord;
     public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
+        errorMessageRecord=new ErrorMessageRecord();
     }
 
     public Ticket park(Car car) {
@@ -29,5 +30,9 @@ public class StandardParkingBoy {
             if(fethedCar!=null)break;
         }
         return fethedCar;
+    }
+
+    public String getErrorMessage() {
+        return errorMessageRecord.getMessage();
     }
 }
