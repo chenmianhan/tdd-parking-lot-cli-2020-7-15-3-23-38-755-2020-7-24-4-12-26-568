@@ -23,6 +23,11 @@ public class StandardParkingBoy {
     }
 
     public Car fetch(Ticket carTicket) {
-        return null;
+        Car fethedCar=null;
+        for (ParkingLot parkingLot : parkingLots) {
+            fethedCar=parkingLot.fetch(carTicket);
+            if(fethedCar!=null)break;
+        }
+        return fethedCar;
     }
 }
