@@ -43,4 +43,8 @@ public class ParkingLot {
     public int getCurStock() {
         return parkingMap.size();
     }
+
+    public int getEmptyPosition() {
+        return capacity-parkingMap.size();
+    }
 }
