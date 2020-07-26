@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class SmartParkingBoyTest {
@@ -81,5 +80,22 @@ class SmartParkingBoyTest {
             assertEquals(fetchedCars.get(i), parkedCars.get(i));
         }
 
+    }
+    @Test
+    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+        Car parkedCar = new Car();
+        smartParkingBoy.park(parkedCar);
+        Ticket wrongTicket = new Ticket();
+
+        //when
+        Car fetchCar = smartParkingBoy.fetch(wrongTicket);
+
+        //then
+        assertNull(fetchCar);
     }
 }
