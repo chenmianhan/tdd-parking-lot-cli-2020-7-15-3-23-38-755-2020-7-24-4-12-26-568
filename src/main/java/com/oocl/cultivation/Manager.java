@@ -13,4 +13,8 @@ public class Manager {
     public List<MultiplyParkingLotParkingBoy> getParkingBotList() {
         return multiplyParkingLotParkingBoys;
     }
+
+    public Ticket parking(MultiplyParkingLotParkingBoy parkingBoy, Car car) {
+        return null;
+    }
 }

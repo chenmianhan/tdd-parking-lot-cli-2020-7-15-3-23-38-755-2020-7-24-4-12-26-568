@@ -1,13 +1,13 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Manager;
-import com.oocl.cultivation.MultiplyParkingLotParkingBoy;
+import com.oocl.cultivation.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ManagerTest {
 
@@ -23,5 +23,21 @@ class ManagerTest {
         //then
         List<MultiplyParkingLotParkingBoy> multiplyParkingLotParkingBoys = parkingManager.getParkingBotList();
         assertEquals(parkingBoy, multiplyParkingLotParkingBoys.get(multiplyParkingLotParkingBoys.size() - 1));
+    }
+
+    @Test
+    void should_return_ticket_when_specify_a_parking_boy_parking_car_given_a_car() {
+        //given
+        Manager parkingManager = new Manager();
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);
+        parkingManager.addParkingBoy(parkingBoy);
+
+        //when
+        Ticket ticket = parkingManager.parking(parkingBoy, new Car());
+
+        //then
+        assertNotNull(ticket);
     }
 }
