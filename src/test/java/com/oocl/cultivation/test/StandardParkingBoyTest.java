@@ -143,21 +143,7 @@ class StandardParkingBoyTest {
         //then
         assertNull(fetchAgainCar);
     }
-    @Test
-    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
 
-        //when
-        standardParkingBoy .park(new Car());
-        standardParkingBoy .fetch(new Ticket());
-
-        //then
-        assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
-    }
     @Test
     void should_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
         //given
@@ -173,56 +159,6 @@ class StandardParkingBoyTest {
 
         //then
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
-    }
-    @Test
-    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_no_provide_the_ticket_and_query_message() {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-
-        //when
-        Ticket usedTicket = standardParkingBoy.park(new Car());
-        standardParkingBoy.fetch(null);
-
-        //then
-        assertEquals("Please provide your parking ticket.", standardParkingBoy.getErrorMessage());
-    }
-    @Test
-    void should_return_not_enough_position_when_park_car_then_parking_lot_full_and_query_message() {
-        //given
-        int capacity=10;
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot(capacity));
-        parkingLots.add(new ParkingLot(capacity));
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-        for(int i =0;i<2*capacity;i++){
-            standardParkingBoy.park(new Car());
-        }
-        standardParkingBoy.park(new Car());
-
-        //when
-        Ticket usedTicket = standardParkingBoy.park(new Car());
-
-        //then
-        assertEquals("Not enough position.", standardParkingBoy.getErrorMessage());
-    }
-    @Test
-    void should_fetch_null_car_when_fetch_given_no_ticket() {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-        Car parkedCar = new Car();
-        standardParkingBoy.park(parkedCar);
-
-        //when
-        Car fetchCar = standardParkingBoy.fetch(null);
-
-        //then
-        assertNull(fetchCar);
     }
 
 }
