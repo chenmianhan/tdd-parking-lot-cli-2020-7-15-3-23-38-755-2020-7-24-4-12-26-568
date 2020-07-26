@@ -1,7 +1,10 @@
 package com.oocl.cultivation.test;
 
 
-import com.oocl.cultivation.*;
+import com.oocl.cultivation.Car;
+import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.StandardParkingBoy;
+import com.oocl.cultivation.Ticket;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -45,22 +48,6 @@ class StandardParkingBoyTest {
         //then
         assertEquals(10, parkingLots.get(0).getCurStock());
         assertEquals(1, parkingLots.get(1).getCurStock());
-    }
-
-    @Test
-    void should_return_ticket_when_parking_car_given_car() {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-        Car car = new Car();
-
-        //when
-        Ticket carTicket = standardParkingBoy.park(car);
-
-        //then
-        assertNotNull(carTicket);
     }
 
     @Test
@@ -126,26 +113,9 @@ class StandardParkingBoyTest {
         //then
         assertNull(fetchCar);
     }
-    @Test
-    void should_fetch_null_car_when_fetch_given_used_ticket() {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-        Car parkedCar = new Car();
-        Ticket usedTicket = standardParkingBoy.park(parkedCar);
-        standardParkingBoy.fetch(usedTicket);
-
-        //when
-        Car fetchAgainCar = standardParkingBoy.fetch(usedTicket);
-
-        //then
-        assertNull(fetchAgainCar);
-    }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -155,9 +125,9 @@ class StandardParkingBoyTest {
         //when
         Ticket usedTicket = standardParkingBoy.park(new Car());
         standardParkingBoy.fetch(usedTicket);
-        standardParkingBoy.fetch(usedTicket);
-
+        Car fetchAgainCar = standardParkingBoy.fetch(usedTicket);
         //then
+        assertNull(fetchAgainCar);
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getErrorMessage());
     }
 
