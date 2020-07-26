@@ -19,6 +19,6 @@ public class Manager {
     }
 
     public Car fetch(MultiplyParkingLotParkingBoy parkingBoy, Ticket ticket) {
-        return null;
+        return parkingBoy.fetch(ticket);
     }
 }
