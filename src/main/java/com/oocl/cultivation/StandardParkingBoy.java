@@ -2,7 +2,7 @@ package com.oocl.cultivation;
 
 import java.util.List;
 
-public class StandardParkingBoy {
+public class StandardParkingBoy  {
 
     private final List<ParkingLot> parkingLots;
     private final MessageRecord errorMessageRecord;

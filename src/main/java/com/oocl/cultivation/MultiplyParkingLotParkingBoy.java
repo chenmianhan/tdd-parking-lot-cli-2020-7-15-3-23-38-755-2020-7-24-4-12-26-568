@@ -22,11 +22,16 @@ public class MultiplyParkingLotParkingBoy {
         return errorMessageRecord.getMessage();
     }
 
-    public void park(Car car) {
+    public Ticket park(Car car) {
         if (isAllFull()) {
             errorMessageRecord.setMessage("Not enough position.");
-
+            return null;
         }
+        return parkingStrategy(car);
+    }
+
+    private Ticket parkingStrategy(Car car) {
+        return null;
     }
 
     private boolean isAllFull() {

@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class MultiplyParkingLotParkingBoyTest {
+class MultiplyParkingLotParkingBoyTest {
     @Test
     void should_fetch_null_car_when_fetch_given_no_ticket() {
         //given
@@ -59,5 +59,20 @@ public class MultiplyParkingLotParkingBoyTest {
 
         //then
         assertEquals("Not enough position.", multiplyParkingLotParkingBoy.getErrorMessage());
+    }
+    @Test
+    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        MultiplyParkingLotParkingBoy multiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
+
+        //when
+        multiplyParkingLotParkingBoy .park(new Car());
+        multiplyParkingLotParkingBoy .fetch(new Ticket());
+
+        //then
+        assertEquals("Unrecognized parking ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
     }
 }
