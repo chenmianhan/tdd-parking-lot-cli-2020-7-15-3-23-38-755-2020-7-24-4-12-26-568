@@ -1,7 +1,10 @@
 package com.oocl.cultivation.test;
 
 
-import com.oocl.cultivation.*;
+import com.oocl.cultivation.Car;
+import com.oocl.cultivation.MultiplyParkingLotParkingBoy;
+import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.Ticket;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -36,7 +39,7 @@ class MultiplyParkingLotParkingBoyTest {
         multiplyParkingLotParkingBoy.fetch(null);
 
         //then
-        assertEquals("Please provide your parking ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
+        assertEquals("Please provide your park ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
     }
 
     @Test
@@ -73,6 +76,6 @@ class MultiplyParkingLotParkingBoyTest {
         multiplyParkingLotParkingBoy .fetch(new Ticket());
 
         //then
-        assertEquals("Unrecognized parking ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
+        assertEquals("Unrecognized park ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
     }
 }

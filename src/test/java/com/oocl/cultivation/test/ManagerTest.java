@@ -35,7 +35,7 @@ class ManagerTest {
         parkingManager.addParkingBoy(parkingBoy);
 
         //when
-        Ticket ticket = parkingManager.parking(parkingBoy, new Car());
+        Ticket ticket = parkingManager.park(parkingBoy, new Car());
 
         //then
         assertNotNull(ticket);

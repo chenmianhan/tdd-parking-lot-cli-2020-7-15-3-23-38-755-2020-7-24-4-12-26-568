@@ -14,7 +14,7 @@ public class Manager {
         return multiplyParkingLotParkingBoys;
     }
 
-    public Ticket parking(MultiplyParkingLotParkingBoy parkingBoy, Car car) {
-        return null;
+    public Ticket park(MultiplyParkingLotParkingBoy parkingBoy, Car car) {
+        return parkingBoy.park(car);
     }
 }

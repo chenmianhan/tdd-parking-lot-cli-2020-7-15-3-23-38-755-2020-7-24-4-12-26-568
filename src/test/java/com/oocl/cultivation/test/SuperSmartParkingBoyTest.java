@@ -115,7 +115,7 @@ class SuperSmartParkingBoyTest {
         Car fetchAgainCar = superSmartParkingBoy.fetch(usedTicket);
         //then
         assertNull(fetchAgainCar);
-        assertEquals("Unrecognized parking ticket.", superSmartParkingBoy.getErrorMessage());
+        assertEquals("Unrecognized park ticket.", superSmartParkingBoy.getErrorMessage());
     }
 }
 

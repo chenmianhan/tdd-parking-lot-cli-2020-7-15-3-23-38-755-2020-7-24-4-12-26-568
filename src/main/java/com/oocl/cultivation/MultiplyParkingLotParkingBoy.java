@@ -16,11 +16,11 @@ public class MultiplyParkingLotParkingBoy {
 
     public Car fetch(Ticket ticket) {
         if(ticket==null){
-            errorMessageRecord.setMessage("Please provide your parking ticket.");
+            errorMessageRecord.setMessage("Please provide your park ticket.");
             return null;
         }
         if(!isTicketRight(ticket)){
-            errorMessageRecord.setMessage("Unrecognized parking ticket.");
+            errorMessageRecord.setMessage("Unrecognized park ticket.");
             return null;
         }
         ParkingLot targetParkingLot = ticketParkingLotMap.remove(ticket);
