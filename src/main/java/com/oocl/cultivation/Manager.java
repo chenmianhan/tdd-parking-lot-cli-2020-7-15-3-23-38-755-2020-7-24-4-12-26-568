@@ -17,4 +17,8 @@ public class Manager {
     public Ticket park(MultiplyParkingLotParkingBoy parkingBoy, Car car) {
         return parkingBoy.park(car);
     }
+
+    public Car fetch(MultiplyParkingLotParkingBoy parkingBoy, Ticket ticket) {
+        return null;
+    }
 }

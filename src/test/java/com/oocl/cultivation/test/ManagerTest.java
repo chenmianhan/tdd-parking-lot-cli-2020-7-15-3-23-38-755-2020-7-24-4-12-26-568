@@ -40,4 +40,22 @@ class ManagerTest {
         //then
         assertNotNull(ticket);
     }
+
+    @Test
+    void should_return_car_when_specify_a_parking_boy_fetch_a_car_given_having_been_parked_car() {
+        //given
+        Manager parkingManager = new Manager();
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);
+        parkingManager.addParkingBoy(parkingBoy);
+        Car parkedCar = new Car();
+
+        //when
+        Ticket ticket = parkingManager.park(parkingBoy, parkedCar);
+        Car fetchedCar = parkingManager.fetch(parkingBoy, ticket);
+
+        //then
+        assertEquals(parkedCar, fetchedCar);
+    }
 }
