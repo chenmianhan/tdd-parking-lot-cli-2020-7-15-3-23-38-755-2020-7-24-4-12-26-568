@@ -4,7 +4,7 @@ import java.util.List;
 
 public class MultiplyParkingLotParkingBoy {
     private final MessageRecord errorMessageRecord;
-    private final List<ParkingLot> parkingLots;
+    protected final List<ParkingLot> parkingLots;
     public MultiplyParkingLotParkingBoy(List<ParkingLot> parkingLots) {
         errorMessageRecord=new ErrorMessageRecord();
         this.parkingLots=parkingLots;
@@ -13,9 +13,12 @@ public class MultiplyParkingLotParkingBoy {
     public Car fetch(Ticket ticket) {
         if(ticket==null){
             errorMessageRecord.setMessage("Please provide your parking ticket.");
-
+        }
+        if(!isTicketRight(ticket)){
+            errorMessageRecord.setMessage("Unrecognized parking ticket.");
         }
         return null;
+
     }
 
     public String getErrorMessage() {
@@ -30,7 +33,7 @@ public class MultiplyParkingLotParkingBoy {
         return parkingStrategy(car);
     }
 
-    private Ticket parkingStrategy(Car car) {
+    protected Ticket parkingStrategy(Car car) {
         return null;
     }
 
@@ -39,5 +42,14 @@ public class MultiplyParkingLotParkingBoy {
             if(!parkingLot.isFull())return false;
         }
         return true;
+    }
+
+    private boolean isTicketRight(Ticket carTicket) {
+        for (ParkingLot parkingLot : parkingLots) {
+            if (parkingLot.isTicketRight(carTicket)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
