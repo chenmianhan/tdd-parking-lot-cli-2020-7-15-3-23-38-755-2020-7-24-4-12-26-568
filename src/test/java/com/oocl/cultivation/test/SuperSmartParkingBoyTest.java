@@ -3,12 +3,14 @@ package com.oocl.cultivation.test;
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.SuperSmartParkingBoy;
+import com.oocl.cultivation.Ticket;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class SuperSmartParkingBoyTest {
     @Test
@@ -34,5 +36,22 @@ class SuperSmartParkingBoyTest {
         assertEquals(carNumber + 1, higherPositionRateParkingLot.getCurStock());
     }
 
+    @Test
+    void should_fetch_car_when_fetching_car_given_ticket() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        Car parkedCar = new Car();
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+        Ticket carTicket = superSmartParkingBoy.park(parkedCar);
+
+        //when
+        Car fetchedCar = superSmartParkingBoy.fetch(carTicket);
+
+        //then
+        assertNotNull(fetchedCar);
+        assertEquals(fetchedCar, parkedCar);
+    }
 }
 
