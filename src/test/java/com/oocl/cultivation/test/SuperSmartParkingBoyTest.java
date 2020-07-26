@@ -100,5 +100,22 @@ class SuperSmartParkingBoyTest {
         //then
         assertNull(fetchCar);
     }
+
+    @Test
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+        //given
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(new ParkingLot());
+        parkingLots.add(new ParkingLot());
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
+
+        //when
+        Ticket usedTicket = superSmartParkingBoy.park(new Car());
+        superSmartParkingBoy.fetch(usedTicket);
+        Car fetchAgainCar = superSmartParkingBoy.fetch(usedTicket);
+        //then
+        assertNull(fetchAgainCar);
+        assertEquals("Unrecognized parking ticket.", superSmartParkingBoy.getErrorMessage());
+    }
 }
 
