@@ -21,4 +21,8 @@ public class MultiplyParkingLotParkingBoy {
     public String getErrorMessage() {
         return errorMessageRecord.getMessage();
     }
+
+    public void park(Car car) {
+
+    }
 }

@@ -38,4 +38,26 @@ public class MultiplyParkingLotParkingBoyTest {
         //then
         assertEquals("Please provide your parking ticket.", multiplyParkingLotParkingBoy.getErrorMessage());
     }
+
+    @Test
+    void should_return_not_enough_position_when_park_car_then_parking_lot_full_and_query_message() {
+        //given
+        int capacity = 10;
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+        for (int i = 0; i < capacity; i++) {
+            parkingLot1.park(new Car());
+            parkingLot2.park(new Car());
+        }
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        MultiplyParkingLotParkingBoy multiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
+
+        //when
+        multiplyParkingLotParkingBoy.park(new Car());
+
+        //then
+        assertEquals("Not enough position.", multiplyParkingLotParkingBoy.getErrorMessage());
+    }
 }
