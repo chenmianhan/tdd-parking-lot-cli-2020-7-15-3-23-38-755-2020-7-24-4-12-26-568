@@ -14,7 +14,7 @@ class ManagerTest {
     @Test
     void should_return_true_when_add_a_parking_boy_to_manage_list_when_given_a_parking_boy() {
         //given
-        Manager parkingManager = new Manager();
+        Manager parkingManager = new Manager(new LinkedList<>());
         MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(new LinkedList<>());
 
         //when
@@ -28,7 +28,7 @@ class ManagerTest {
     @Test
     void should_return_ticket_when_specify_a_parking_boy_parking_car_given_a_car() {
         //given
-        Manager parkingManager = new Manager();
+        Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);
@@ -44,7 +44,7 @@ class ManagerTest {
     @Test
     void should_return_car_when_specify_a_parking_boy_fetch_a_car_given_having_been_parked_car() {
         //given
-        Manager parkingManager = new Manager();
+        Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);

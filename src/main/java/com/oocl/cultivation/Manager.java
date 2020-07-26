@@ -4,8 +4,13 @@ package com.oocl.cultivation;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Manager {
+public class Manager extends StandardParkingBoy {
     private List<MultiplyParkingLotParkingBoy> multiplyParkingLotParkingBoys = new LinkedList<>();
+
+    public Manager(List<ParkingLot> parkingLots) {
+        super(parkingLots);
+    }
+
     public void addParkingBoy(MultiplyParkingLotParkingBoy parkingBoy) {
         multiplyParkingLotParkingBoys.add(parkingBoy);
     }
