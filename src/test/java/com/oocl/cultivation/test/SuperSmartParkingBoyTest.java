@@ -28,9 +28,11 @@ class SuperSmartParkingBoyTest {
 
         //when
         superSmartParkingBoy.park(new Car());
+
         //then
         assertEquals(carNumber, lowerPositionRateParkingLot.getCurStock());
         assertEquals(carNumber + 1, higherPositionRateParkingLot.getCurStock());
     }
+
 }
 

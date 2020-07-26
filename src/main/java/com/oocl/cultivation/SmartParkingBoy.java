@@ -12,6 +12,7 @@ public class SmartParkingBoy extends MultiplyParkingLotParkingBoy {
         for (ParkingLot parkLot : parkingLots) {
             if (parkLot.getEmptyPosition()>emptyPosition) {
                 moreEmptyPositionParkingLot=parkLot;
+                emptyPosition = parkLot.getEmptyPosition();
             }
         }
         Ticket ticket=moreEmptyPositionParkingLot.park(car);
