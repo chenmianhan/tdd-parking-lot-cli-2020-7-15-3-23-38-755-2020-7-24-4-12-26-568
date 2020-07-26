@@ -23,6 +23,16 @@ public class MultiplyParkingLotParkingBoy {
     }
 
     public void park(Car car) {
+        if (isAllFull()) {
+            errorMessageRecord.setMessage("Not enough position.");
 
+        }
+    }
+
+    private boolean isAllFull() {
+        for (ParkingLot parkingLot : parkingLots) {
+            if(!parkingLot.isFull())return false;
+        }
+        return true;
     }
 }
