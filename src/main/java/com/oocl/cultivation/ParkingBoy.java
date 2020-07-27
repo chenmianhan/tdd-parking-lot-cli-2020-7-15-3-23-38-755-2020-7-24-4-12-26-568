@@ -35,7 +35,7 @@ public class ParkingBoy implements Parkable {
 
     protected Ticket parkingStrategy(Car car) {
         for (ParkingLot parkLot : parkingLots) {
-            if (!parkLot.isFull()) {
+            if (parkLot.isNotFull()) {
                 Ticket ticket= parkLot.park(car);
                 ticketParkingLotMap.put(ticket,parkLot);
                 return ticket;
@@ -46,7 +46,7 @@ public class ParkingBoy implements Parkable {
 
     private boolean isAllFull() {
         for (ParkingLot parkingLot : parkingLots) {
-            if(!parkingLot.isFull())return false;
+            if (parkingLot.isNotFull()) return false;
         }
         return true;
     }
