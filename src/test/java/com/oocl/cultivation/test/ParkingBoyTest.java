@@ -144,7 +144,7 @@ class ParkingBoyTest {
         Ticket usedTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(usedTicket);
         Throwable exception = assertThrows(FetchException.class, () -> {
-            Car fetchAgainCar = parkingBoy.fetch(usedTicket);
+            parkingBoy.fetch(usedTicket);
         });
 
         //then
