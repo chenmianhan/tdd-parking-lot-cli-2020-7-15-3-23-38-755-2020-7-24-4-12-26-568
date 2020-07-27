@@ -1,10 +1,16 @@
 package com.oocl.cultivation;
 
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Manager extends ParkingBoy {
 
     public Manager(Parkable... parkables) {
         super(parkables);
+        List<Parkable> newParkables = new LinkedList<>();
+        for (Parkable parkable : parkables) newParkables.add(parkable);
+        this.parkables = newParkables;
     }
 
     public void addParkingBoy(ParkingBoy parkingBoy) {

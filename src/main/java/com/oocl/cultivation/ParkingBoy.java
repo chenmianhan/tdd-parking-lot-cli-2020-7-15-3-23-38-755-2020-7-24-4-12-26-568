@@ -8,7 +8,7 @@ import java.util.Map;
 import static com.oocl.cultivation.ErrorMessage.*;
 
 public class ParkingBoy implements Parkable {
-    protected final List<Parkable> parkables;
+    protected List<Parkable> parkables;
     protected final Map<Ticket, Parkable> ticketParkingLotMap;
 
     public ParkingBoy(Parkable... parkables) {
