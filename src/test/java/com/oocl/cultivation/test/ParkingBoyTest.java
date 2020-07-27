@@ -17,7 +17,7 @@ class ParkingBoyTest {
     private ParkingBoy parkingBoy;
 
     @BeforeEach
-    private void initTest() {
+    void initTest() {
         parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
