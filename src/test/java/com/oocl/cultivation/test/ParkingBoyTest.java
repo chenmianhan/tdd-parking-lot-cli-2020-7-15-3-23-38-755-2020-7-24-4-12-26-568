@@ -127,7 +127,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() throws ParkingException {
+    void should_return_unrecognized_parking_ticket_when_fetch_car_given_wrong_ticket() throws ParkingException {
         //given
 
         //when
