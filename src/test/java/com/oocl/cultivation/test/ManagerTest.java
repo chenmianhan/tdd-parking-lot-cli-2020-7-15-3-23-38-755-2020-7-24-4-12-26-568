@@ -43,4 +43,5 @@ class ManagerTest {
         //then
         assertNotNull(ticket);
     }
+
 }

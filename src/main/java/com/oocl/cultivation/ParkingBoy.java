@@ -55,8 +55,8 @@ public class ParkingBoy implements Parkable {
         return null;
     }
 
-
-    private boolean isTicketRight(Ticket carTicket) {
+    @Override
+    public boolean isTicketRight(Ticket carTicket) {
         return ticketParkingLotMap.containsKey(carTicket);
     }
 }

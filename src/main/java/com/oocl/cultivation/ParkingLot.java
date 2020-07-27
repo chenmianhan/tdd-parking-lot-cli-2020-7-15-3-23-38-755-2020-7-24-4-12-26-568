@@ -29,6 +29,11 @@ public class ParkingLot implements Parkable {
         return parkingMap.remove(carTicket);
     }
 
+    @Override
+    public boolean isTicketRight(Ticket ticket) {
+        return parkingMap.containsKey(ticket);
+    }
+
 
     public boolean isNotFull() {
         return capacity > parkingMap.size();

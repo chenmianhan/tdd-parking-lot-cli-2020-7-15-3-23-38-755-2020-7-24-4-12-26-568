@@ -1,6 +1,7 @@
 package com.oocl.cultivation;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,8 +9,7 @@ public class Manager extends ParkingBoy {
 
     public Manager(Parkable... parkables) {
         super(parkables);
-        List<Parkable> newParkables = new LinkedList<>();
-        for (Parkable parkable : parkables) newParkables.add(parkable);
+        List<Parkable> newParkables = new LinkedList<>(Arrays.asList(parkables));
         this.parkables = newParkables;
     }
 
@@ -26,7 +26,13 @@ public class Manager extends ParkingBoy {
         return null;
     }
 
-    public Car fetch(ParkingBoy parkingBoy, Ticket ticket) throws FetchException {
-        return parkingBoy.fetch(ticket);
+    @Override
+    public Car fetch(Ticket ticket) throws FetchException {
+        for (Parkable parkable : parkables) {
+            if (parkable.isTicketRight(ticket)) {
+                return parkable.fetch(ticket);
+            }
+        }
+        return null;
     }
 }

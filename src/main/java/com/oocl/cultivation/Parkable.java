@@ -6,4 +6,6 @@ public interface Parkable {
     boolean isNotFull();
 
     Car fetch(Ticket ticket) throws FetchException;
+
+    boolean isTicketRight(Ticket ticket);
 }
