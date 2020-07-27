@@ -1,5 +1,6 @@
 package com.oocl.cultivation;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,15 @@ import java.util.Map;
 import static com.oocl.cultivation.ErrorMessage.*;
 
 public class ParkingBoy implements Parkable {
-    protected final List<ParkingLot> parkingLots;
-    protected final Map<Ticket, ParkingLot> ticketParkingLotMap;
-    public ParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots=parkingLots;
+    protected final List<Parkable> parkables;
+    protected final Map<Ticket, Parkable> ticketParkingLotMap;
+
+    public ParkingBoy(Parkable... parkables) {
+        this.parkables = Arrays.asList(parkables);
         ticketParkingLotMap = new HashMap<>();
     }
 
+    @Override
     public Car fetch(Ticket ticket) throws FetchException {
         if(ticket==null){
             throw new FetchException(NOTTICKET.getError());
@@ -21,7 +24,7 @@ public class ParkingBoy implements Parkable {
         if(!isTicketRight(ticket)){
             throw new FetchException(WRONGTICKET.getError());
         }
-        ParkingLot targetParkingLot = ticketParkingLotMap.remove(ticket);
+        Parkable targetParkingLot = ticketParkingLotMap.remove(ticket);
         return targetParkingLot.fetch(ticket);
     }
 
@@ -33,11 +36,16 @@ public class ParkingBoy implements Parkable {
         return parkingStrategy(car);
     }
 
-    protected Ticket parkingStrategy(Car car) {
-        for (ParkingLot parkLot : parkingLots) {
-            if (parkLot.isNotFull()) {
-                Ticket ticket= parkLot.park(car);
-                ticketParkingLotMap.put(ticket,parkLot);
+    @Override
+    public boolean isNotFull() {
+        return false;
+    }
+
+    protected Ticket parkingStrategy(Car car) throws ParkingException {
+        for (Parkable parkable : parkables) {
+            if (parkable.isNotFull()) {
+                Ticket ticket = parkable.park(car);
+                ticketParkingLotMap.put(ticket, parkable);
                 return ticket;
             }
         }
@@ -45,8 +53,8 @@ public class ParkingBoy implements Parkable {
     }
 
     private boolean isAllFull() {
-        for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.isNotFull()) return false;
+        for (Parkable parkable : parkables) {
+            if (parkable.isNotFull()) return false;
         }
         return true;
     }

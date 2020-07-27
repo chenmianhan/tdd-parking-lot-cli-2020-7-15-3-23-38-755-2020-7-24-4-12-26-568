@@ -4,7 +4,7 @@ package com.oocl.cultivation;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot implements Parkable {
     private final Map<Ticket, Car> parkingMap;
     private final int capacity;
 
@@ -18,6 +18,7 @@ public class ParkingLot {
         parkingMap = new HashMap<>();
     }
 
+    @Override
     public Ticket park(Car car) {
         Ticket carTicket = new Ticket();
         parkingMap.put(carTicket, car);

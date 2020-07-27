@@ -1,18 +1,17 @@
 package com.oocl.cultivation;
 
-import java.util.List;
-
 public class SmartParkingBoy extends ParkingBoy {
-    public SmartParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
+    public SmartParkingBoy(Parkable... parkables) {
+        super(parkables);
     }
     protected Ticket parkingStrategy(Car car) {
         int emptyPosition=Integer.MIN_VALUE;
-        ParkingLot moreEmptyPositionParkingLot=parkingLots.get(0);
-        for (ParkingLot parkLot : parkingLots) {
-            if (parkLot.getEmptyPosition()>emptyPosition) {
-                moreEmptyPositionParkingLot=parkLot;
-                emptyPosition = parkLot.getEmptyPosition();
+        ParkingLot moreEmptyPositionParkingLot = (ParkingLot) parkables.get(0);
+        for (Parkable parkable : parkables) {
+            ParkingLot parkingLot = (ParkingLot) parkable;
+            if (parkingLot.getEmptyPosition() > emptyPosition) {
+                moreEmptyPositionParkingLot = parkingLot;
+                emptyPosition = parkingLot.getEmptyPosition();
             }
         }
         Ticket ticket=moreEmptyPositionParkingLot.park(car);

@@ -15,13 +15,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkingBoyTest {
     private List<ParkingLot> parkingLots;
     private ParkingBoy parkingBoy;
+    private ParkingLot firstParkingLot;
+    private ParkingLot secondParkingLot;
 
     @BeforeEach
     void initTest() {
         parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        parkingBoy = new ParkingBoy(parkingLots);
+        firstParkingLot = new ParkingLot();
+        secondParkingLot = new ParkingLot();
+        parkingLots.add(firstParkingLot);
+        parkingLots.add(secondParkingLot);
+        parkingBoy = new ParkingBoy(firstParkingLot, secondParkingLot);
     }
     @Test
     void should_parking_at_the_first_parking_lot_when_parking_car_given_five_cars() throws ParkingException {
@@ -32,8 +36,8 @@ class ParkingBoyTest {
             parkingBoy.park(new Car());
 
         //then
-        assertEquals(5, parkingLots.get(0).getCurStock());
-        assertEquals(0, parkingLots.get(1).getCurStock());
+        assertEquals(5, firstParkingLot.getCurStock());
+        assertEquals(0, secondParkingLot.getCurStock());
     }
 
     @Test
@@ -46,8 +50,8 @@ class ParkingBoyTest {
             parkingBoy.park(new Car());
 
         //then
-        assertEquals(10, parkingLots.get(0).getCurStock());
-        assertEquals(1, parkingLots.get(1).getCurStock());
+        assertEquals(10, firstParkingLot.getCurStock());
+        assertEquals(1, secondParkingLot.getCurStock());
     }
 
     @Test
@@ -127,15 +131,11 @@ class ParkingBoyTest {
         //given
         int capacity = 10;
         parkingLots = new LinkedList<>();
-        ParkingLot parkingLot1 = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
         for (int i = 0; i < capacity; i++) {
-            parkingLot1.park(new Car());
-            parkingLot2.park(new Car());
+            firstParkingLot.park(new Car());
+            secondParkingLot.park(new Car());
         }
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(firstParkingLot, secondParkingLot);
 
         //when
 

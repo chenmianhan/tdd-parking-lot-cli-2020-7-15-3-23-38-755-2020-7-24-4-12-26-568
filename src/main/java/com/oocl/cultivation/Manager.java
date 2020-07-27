@@ -7,8 +7,8 @@ import java.util.List;
 public class Manager extends ParkingBoy {
     private List<ParkingBoy> parkingBoys = new LinkedList<>();
 
-    public Manager(List<ParkingLot> parkingLots) {
-        super(parkingLots);
+    public Manager(Parkable... parkables) {
+        super(parkables);
     }
 
     public void addParkingBoy(ParkingBoy parkingBoy) {

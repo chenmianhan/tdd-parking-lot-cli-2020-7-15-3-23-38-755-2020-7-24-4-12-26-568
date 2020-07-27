@@ -6,9 +6,6 @@ import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.SmartParkingBoy;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -18,7 +15,7 @@ class SmartParkingBoyTest {
         //given
         int firstCarNumber = 5;
         int secondCarNumber = 2;
-        List<ParkingLot> parkingLots = new LinkedList<>();
+
         ParkingLot firstParkingLot = new ParkingLot();
         ParkingLot secondParkingLot = new ParkingLot();
         for (int carIndex = 0; carIndex < firstCarNumber; carIndex++) {
@@ -27,16 +24,15 @@ class SmartParkingBoyTest {
         for (int carIndex = 0; carIndex < secondCarNumber; carIndex++) {
             secondParkingLot.park(new Car());
         }
-        parkingLots.add(firstParkingLot);
-        parkingLots.add(secondParkingLot);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
+
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(firstParkingLot, secondParkingLot);
 
         //when
         smartParkingBoy.park(new Car());
 
         //then
-        assertEquals(firstCarNumber, parkingLots.get(0).getCurStock());
-        assertEquals(secondCarNumber+1, parkingLots.get(1).getCurStock());
+        assertEquals(firstCarNumber, firstParkingLot.getCurStock());
+        assertEquals(secondCarNumber + 1, secondParkingLot.getCurStock());
     }
 
 }

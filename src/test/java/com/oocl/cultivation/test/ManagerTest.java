@@ -6,56 +6,30 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ManagerTest {
 
     @Test
-    void should_return_true_when_add_a_parking_boy_to_manage_list_when_given_a_parking_boy() {
+    void should_return_four_ticket_when_parking_three_car_given_one_parkingLot_three_parkingBoy() throws ParkingException {
         //given
-        Manager parkingManager = new Manager(new LinkedList<>());
-        ParkingBoy parkingBoy = new ParkingBoy(new LinkedList<>());
+        ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(1));
+        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(new ParkingLot(1));
+        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(new ParkingLot(1));
+        ParkingLot parkingLot = new ParkingLot(1);
+        Manager manager = new Manager(parkingBoy, smartParkingBoy, smartParkingBoy, superSmartParkingBoy, parkingLot);
+        List<Ticket> tickets = new LinkedList<>();
 
         //when
-        parkingManager.addParkingBoy(parkingBoy);
+        for (int carIndex = 0; carIndex < 4; carIndex++) {
+            tickets.add(manager.park(new Car()));
+        }
 
         //then
-        List<ParkingBoy> parkingBoys = parkingManager.getParkingBotList();
-        assertEquals(parkingBoy, parkingBoys.get(parkingBoys.size() - 1));
+        for (Ticket ticket : tickets) {
+            assertNotNull(ticket);
+        }
     }
 
-    @Test
-    void should_return_ticket_when_specify_a_parking_boy_parking_car_given_a_car() throws ParkingException {
-        //given
-        Manager parkingManager = new Manager(new LinkedList<>());
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        parkingManager.addParkingBoy(parkingBoy);
 
-        //when
-        Ticket ticket = parkingManager.park(parkingBoy, new Car());
-
-        //then
-        assertNotNull(ticket);
-    }
-
-    @Test
-    void should_return_car_when_specify_a_parking_boy_fetch_a_car_given_having_been_parked_car() throws FetchException, ParkingException {
-        //given
-        Manager parkingManager = new Manager(new LinkedList<>());
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        parkingManager.addParkingBoy(parkingBoy);
-        Car parkedCar = new Car();
-
-        //when
-        Ticket ticket = parkingManager.park(parkingBoy, parkedCar);
-        Car fetchedCar = parkingManager.fetch(parkingBoy, ticket);
-
-        //then
-        assertEquals(parkedCar, fetchedCar);
-    }
 }

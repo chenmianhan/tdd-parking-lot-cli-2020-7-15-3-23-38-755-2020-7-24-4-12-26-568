@@ -1,21 +1,20 @@
 package com.oocl.cultivation;
 
-import java.util.List;
-
 public class SuperSmartParkingBoy extends ParkingBoy {
 
-    public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
+    public SuperSmartParkingBoy(Parkable... parkables) {
+        super(parkables);
     }
 
     @Override
     protected Ticket parkingStrategy(Car car) {
         double higherAvailablePositionRate = 0;
-        ParkingLot higherAvailablePositionRateParkingLot = parkingLots.get(0);
-        for (ParkingLot parkLot : parkingLots) {
-            if (parkLot.getAvailablePositionRate() > higherAvailablePositionRate) {
-                higherAvailablePositionRateParkingLot = parkLot;
-                higherAvailablePositionRate = parkLot.getAvailablePositionRate();
+        ParkingLot higherAvailablePositionRateParkingLot = (ParkingLot) parkables.get(0);
+        for (Parkable parkable : parkables) {
+            ParkingLot parkingLot = (ParkingLot) parkable;
+            if (parkingLot.getAvailablePositionRate() > higherAvailablePositionRate) {
+                higherAvailablePositionRateParkingLot = parkingLot;
+                higherAvailablePositionRate = parkingLot.getAvailablePositionRate();
             }
         }
 
