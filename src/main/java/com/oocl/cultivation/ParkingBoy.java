@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.oocl.cultivation.ErrorMessage.NOTTICKET;
+import static com.oocl.cultivation.ErrorMessage.WRONGTICKET;
+
 public class ParkingBoy {
     protected final List<ParkingLot> parkingLots;
     protected final Map<Ticket, ParkingLot> ticketParkingLotMap;
@@ -12,13 +15,12 @@ public class ParkingBoy {
         ticketParkingLotMap = new HashMap<>();
     }
 
-    public Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) throws FetchException {
         if(ticket==null){
-
-            return null;
+            throw new FetchException(NOTTICKET.getError());
         }
         if(!isTicketRight(ticket)){
-            return null;
+            throw new FetchException(WRONGTICKET.getError());
         }
         ParkingLot targetParkingLot = ticketParkingLotMap.remove(ticket);
         return targetParkingLot.fetch(ticket);

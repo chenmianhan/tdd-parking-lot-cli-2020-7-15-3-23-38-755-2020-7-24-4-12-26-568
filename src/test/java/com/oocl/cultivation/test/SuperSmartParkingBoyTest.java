@@ -35,7 +35,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_car_when_fetching_car_given_ticket() {
+    void should_fetch_car_when_fetching_car_given_ticket() throws FetchException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -53,7 +53,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() {
+    void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() throws FetchException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -83,7 +83,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
+    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws FetchException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -101,7 +101,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());

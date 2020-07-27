@@ -59,26 +59,31 @@ class ParkingBoyTest {
         parkingBoy.park(parkedCar);
         Ticket wrongTicket = new Ticket();
 
-        //when
-        Car fetchCar = parkingBoy.fetch(wrongTicket);
+        try {
+            //when
+            Car fetchCar = parkingBoy.fetch(wrongTicket);
 
-        //then
-        assertNull(fetchCar);
+            //then
+            assertNull(fetchCar);
+        } catch (FetchException fetchException) {
+
+        }
     }
 
     @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() {
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException {
         //given
 
         //when
         Ticket usedTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(usedTicket);
-        Car fetchAgainCar = parkingBoy.fetch(usedTicket);
+
         Throwable exception = assertThrows(FetchException.class, () -> {
-            parkingBoy.fetch(usedTicket);
+            Car fetchAgainCar = parkingBoy.fetch(usedTicket);
+            assertNull(fetchAgainCar);
         });
+
         //then
-        assertNull(fetchAgainCar);
         Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
 
     }
@@ -87,11 +92,15 @@ class ParkingBoyTest {
     void should_fetch_null_car_when_fetch_given_no_ticket() {
         //given
 
-        //when
-        Car car = parkingBoy.fetch(null);
+        try {
+            //when
+            Car car = parkingBoy.fetch(null);
+            //then
+            assertNull(car);
+        } catch (FetchException fetchException) {
 
-        //then
-        assertNull(car);
+        }
+
     }
 
     @Test

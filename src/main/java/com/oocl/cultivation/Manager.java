@@ -23,7 +23,7 @@ public class Manager extends ParkingBoy {
         return parkingBoy.park(car);
     }
 
-    public Car fetch(ParkingBoy parkingBoy, Ticket ticket) {
+    public Car fetch(ParkingBoy parkingBoy, Ticket ticket) throws FetchException {
         return parkingBoy.fetch(ticket);
     }
 }
