@@ -31,7 +31,7 @@ class ManagerTest {
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
-        MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
         parkingManager.addParkingBoy(parkingBoy);
 
         //when
@@ -47,7 +47,7 @@ class ManagerTest {
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
-        MultiplyParkingLotParkingBoy parkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
         parkingManager.addParkingBoy(parkingBoy);
         Car parkedCar = new Car();
 

@@ -4,7 +4,7 @@ package com.oocl.cultivation;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Manager extends StandardParkingBoy {
+public class Manager extends MultiplyParkingLotParkingBoy {
     private List<MultiplyParkingLotParkingBoy> multiplyParkingLotParkingBoys = new LinkedList<>();
 
     public Manager(List<ParkingLot> parkingLots) {

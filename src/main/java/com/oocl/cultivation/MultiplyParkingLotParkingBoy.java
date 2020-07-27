@@ -40,6 +40,13 @@ public class MultiplyParkingLotParkingBoy {
     }
 
     protected Ticket parkingStrategy(Car car) {
+        for (ParkingLot parkLot : parkingLots) {
+            if (!parkLot.isFull()) {
+                Ticket ticket= parkLot.park(car);
+                ticketParkingLotMap.put(ticket,parkLot);
+                return ticket;
+            }
+        }
         return null;
     }
 

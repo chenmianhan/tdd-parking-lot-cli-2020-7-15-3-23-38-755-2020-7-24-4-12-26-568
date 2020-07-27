@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StandardParkingBoyTest {
+class MultiplyParkingLotParkingBoyTest {
 
     @Test
     void should_parking_at_the_first_parking_lot_when_parking_car_given_five_cars() {
@@ -18,11 +18,11 @@ class StandardParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy MultiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
 
         //when
         for (int i = 0; i < carNumber; i++)
-            standardParkingBoy.park(new Car());
+            MultiplyParkingLotParkingBoy.park(new Car());
 
         //then
         assertEquals(5, parkingLots.get(0).getCurStock());
@@ -36,11 +36,11 @@ class StandardParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy multiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
 
         //when
         for (int i = 0; i < carNumber; i++)
-            standardParkingBoy.park(new Car());
+            multiplyParkingLotParkingBoy.park(new Car());
 
         //then
         assertEquals(10, parkingLots.get(0).getCurStock());
@@ -54,11 +54,11 @@ class StandardParkingBoyTest {
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
         Car parkedCar = new Car();
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
-        Ticket carTicket = standardParkingBoy.park(parkedCar);
+        MultiplyParkingLotParkingBoy MultiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
+        Ticket carTicket = MultiplyParkingLotParkingBoy.park(parkedCar);
 
         //when
-        Car fetchedCar = standardParkingBoy.fetch(carTicket);
+        Car fetchedCar = MultiplyParkingLotParkingBoy.fetch(carTicket);
 
         //then
         assertNotNull(fetchedCar);
@@ -71,7 +71,7 @@ class StandardParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy MultiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
         List<Car> parkedCars = new LinkedList<>();
         List<Ticket> tickets = new LinkedList<>();
         int carNumber = 12;
@@ -81,11 +81,11 @@ class StandardParkingBoyTest {
 
         //when
         for (Car car : parkedCars) {
-            tickets.add(standardParkingBoy.park(car));
+            tickets.add(MultiplyParkingLotParkingBoy.park(car));
         }
         List<Car> fetchedCars = new LinkedList<>();
         for (Ticket ticket : tickets) {
-            fetchedCars.add(standardParkingBoy.fetch(ticket));
+            fetchedCars.add(MultiplyParkingLotParkingBoy.fetch(ticket));
         }
 
         //then
@@ -101,13 +101,13 @@ class StandardParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy MultiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
         Car parkedCar = new Car();
-        standardParkingBoy.park(parkedCar);
+        MultiplyParkingLotParkingBoy.park(parkedCar);
         Ticket wrongTicket = new Ticket();
 
         //when
-        Car fetchCar = standardParkingBoy.fetch(wrongTicket);
+        Car fetchCar = MultiplyParkingLotParkingBoy.fetch(wrongTicket);
 
         //then
         assertNull(fetchCar);
@@ -119,15 +119,15 @@ class StandardParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
+        MultiplyParkingLotParkingBoy MultiplyParkingLotParkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
 
         //when
-        Ticket usedTicket = standardParkingBoy.park(new Car());
-        standardParkingBoy.fetch(usedTicket);
-        Car fetchAgainCar = standardParkingBoy.fetch(usedTicket);
+        Ticket usedTicket = MultiplyParkingLotParkingBoy.park(new Car());
+        MultiplyParkingLotParkingBoy.fetch(usedTicket);
+        Car fetchAgainCar = MultiplyParkingLotParkingBoy.fetch(usedTicket);
         //then
         assertNull(fetchAgainCar);
-        assertEquals("Unrecognized park ticket.", standardParkingBoy.getErrorMessage());
+        assertEquals("Unrecognized park ticket.", MultiplyParkingLotParkingBoy.getErrorMessage());
     }
 
     @Test
