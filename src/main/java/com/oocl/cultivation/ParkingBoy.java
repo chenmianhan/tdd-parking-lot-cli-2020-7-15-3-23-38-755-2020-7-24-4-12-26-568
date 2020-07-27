@@ -8,7 +8,6 @@ public class ParkingBoy {
     protected final List<ParkingLot> parkingLots;
     protected final Map<Ticket, ParkingLot> ticketParkingLotMap;
     public ParkingBoy(List<ParkingLot> parkingLots) {
-
         this.parkingLots=parkingLots;
         ticketParkingLotMap = new HashMap<>();
     }
