@@ -2,6 +2,7 @@ package com.oocl.cultivation.test;
 
 
 import com.oocl.cultivation.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -18,11 +19,11 @@ class ParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy ParkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         //when
         for (int i = 0; i < carNumber; i++)
-            ParkingBoy.park(new Car());
+            parkingBoy.park(new Car());
 
         //then
         assertEquals(5, parkingLots.get(0).getCurStock());
@@ -54,11 +55,11 @@ class ParkingBoyTest {
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
         Car parkedCar = new Car();
-        ParkingBoy ParkingBoy = new ParkingBoy(parkingLots);
-        Ticket carTicket = ParkingBoy.park(parkedCar);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket carTicket = parkingBoy.park(parkedCar);
 
         //when
-        Car fetchedCar = ParkingBoy.fetch(carTicket);
+        Car fetchedCar = parkingBoy.fetch(carTicket);
 
         //then
         assertNotNull(fetchedCar);
@@ -71,7 +72,7 @@ class ParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy ParkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         List<Car> parkedCars = new LinkedList<>();
         List<Ticket> tickets = new LinkedList<>();
         int carNumber = 12;
@@ -81,11 +82,11 @@ class ParkingBoyTest {
 
         //when
         for (Car car : parkedCars) {
-            tickets.add(ParkingBoy.park(car));
+            tickets.add(parkingBoy.park(car));
         }
         List<Car> fetchedCars = new LinkedList<>();
         for (Ticket ticket : tickets) {
-            fetchedCars.add(ParkingBoy.fetch(ticket));
+            fetchedCars.add(parkingBoy.fetch(ticket));
         }
 
         //then
@@ -101,13 +102,13 @@ class ParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy ParkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car parkedCar = new Car();
-        ParkingBoy.park(parkedCar);
+        parkingBoy.park(parkedCar);
         Ticket wrongTicket = new Ticket();
 
         //when
-        Car fetchCar = ParkingBoy.fetch(wrongTicket);
+        Car fetchCar = parkingBoy.fetch(wrongTicket);
 
         //then
         assertNull(fetchCar);
@@ -119,15 +120,19 @@ class ParkingBoyTest {
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
         parkingLots.add(new ParkingLot());
-        ParkingBoy ParkingBoy = new ParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         //when
-        Ticket usedTicket = ParkingBoy.park(new Car());
-        ParkingBoy.fetch(usedTicket);
-        Car fetchAgainCar = ParkingBoy.fetch(usedTicket);
+        Ticket usedTicket = parkingBoy.park(new Car());
+        parkingBoy.fetch(usedTicket);
+        Car fetchAgainCar = parkingBoy.fetch(usedTicket);
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            parkingBoy.fetch(usedTicket);
+        });
         //then
         assertNull(fetchAgainCar);
-        assertEquals("Unrecognized park ticket.", ParkingBoy.getErrorMessage());
+        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
+
     }
 
     @Test
@@ -152,10 +157,12 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         //when
-        parkingBoy.fetch(null);
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            parkingBoy.fetch(null);
+        });
 
         //then
-        assertEquals("Please provide your park ticket.", parkingBoy.getErrorMessage());
+        Assertions.assertEquals("Please provide your park ticket.", exception.getMessage());
     }
 
     @Test
@@ -174,10 +181,13 @@ class ParkingBoyTest {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         //when
-        parkingBoy.park(new Car());
+
+        Throwable exception = assertThrows(ParkingException.class, () -> {
+            parkingBoy.park(new Car());;
+        });
 
         //then
-        assertEquals("Not enough position.", parkingBoy.getErrorMessage());
+        Assertions.assertEquals("Not enough position.", exception.getMessage());
     }
 
     @Test
@@ -190,10 +200,12 @@ class ParkingBoyTest {
 
         //when
         parkingBoy.park(new Car());
-        parkingBoy.fetch(new Ticket());
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            parkingBoy.fetch(new Ticket());
+        });
 
         //then
-        assertEquals("Unrecognized park ticket.", parkingBoy.getErrorMessage());
+        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 
 }

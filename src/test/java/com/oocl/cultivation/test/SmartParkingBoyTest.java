@@ -1,9 +1,7 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.Car;
-import com.oocl.cultivation.ParkingLot;
-import com.oocl.cultivation.SmartParkingBoy;
-import com.oocl.cultivation.Ticket;
+import com.oocl.cultivation.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -113,8 +111,12 @@ class SmartParkingBoyTest {
         Ticket usedTicket = smartParkingBoy.park(new Car());
         smartParkingBoy.fetch(usedTicket);
         Car fetchAgainCar = smartParkingBoy.fetch(usedTicket);
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            smartParkingBoy.fetch(usedTicket);
+        });
+
         //then
         assertNull(fetchAgainCar);
-        assertEquals("Unrecognized park ticket.", smartParkingBoy.getErrorMessage());
+        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
 }
