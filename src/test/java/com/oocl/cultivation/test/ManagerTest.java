@@ -31,5 +31,16 @@ class ManagerTest {
         }
     }
 
+    @Test
+    void should_return_one_ticket_when_parking_a_car_given_add_one_parking_boy() throws ParkingException {
+        //given
+        Manager manager = new Manager();
+        manager.addParkingBoy(new ParkingBoy(new ParkingLot(1)));
 
+        //when
+        Ticket ticket = manager.park(new Car());
+
+        //then
+        assertNotNull(ticket);
+    }
 }
