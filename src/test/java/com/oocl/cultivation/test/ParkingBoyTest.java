@@ -102,7 +102,7 @@ class ParkingBoyTest {
 
 
     @Test
-    void should_return_not_enough_position_when_park_car_then_parking_lot_full_and_query_message() {
+    void should_return_not_enough_position_when_park_car_given_full_parking_lot() {
         //given
         int capacity = 10;
         parkingLots = new LinkedList<>();
