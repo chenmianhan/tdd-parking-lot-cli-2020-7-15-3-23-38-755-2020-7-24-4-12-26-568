@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.oocl.cultivation.ErrorMessage.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingBoyTest {
@@ -131,7 +132,7 @@ class ParkingBoyTest {
         });
         //then
         assertNull(fetchAgainCar);
-        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
+        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
 
     }
 
@@ -162,7 +163,7 @@ class ParkingBoyTest {
         });
 
         //then
-        Assertions.assertEquals("Please provide your park ticket.", exception.getMessage());
+        Assertions.assertEquals(NOTTICKET.getError(), exception.getMessage());
     }
 
     @Test
@@ -183,11 +184,11 @@ class ParkingBoyTest {
         //when
 
         Throwable exception = assertThrows(ParkingException.class, () -> {
-            parkingBoy.park(new Car());;
+            parkingBoy.park(new Car());
         });
 
         //then
-        Assertions.assertEquals("Not enough position.", exception.getMessage());
+        Assertions.assertEquals(NOTSPACE.getError(), exception.getMessage());
     }
 
     @Test
@@ -205,7 +206,7 @@ class ParkingBoyTest {
         });
 
         //then
-        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
+        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
     }
 
 }

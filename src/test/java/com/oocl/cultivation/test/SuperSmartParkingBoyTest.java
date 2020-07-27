@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.oocl.cultivation.ErrorMessage.WRONGTICKET;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SuperSmartParkingBoyTest {
@@ -117,7 +118,7 @@ class SuperSmartParkingBoyTest {
 
         //then
         assertNull(fetchAgainCar);
-        Assertions.assertEquals("Unrecognized parking ticket.", exception.getMessage());
+        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
     }
 }
 
