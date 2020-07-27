@@ -1,14 +1,15 @@
 package com.oocl.cultivation.test;
 
-import com.oocl.cultivation.*;
-import org.junit.jupiter.api.Assertions;
+import com.oocl.cultivation.Car;
+import com.oocl.cultivation.ParkingException;
+import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.SuperSmartParkingBoy;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.oocl.cultivation.ErrorMessage.WRONGTICKET;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SuperSmartParkingBoyTest {
     @Test
@@ -34,45 +35,5 @@ class SuperSmartParkingBoyTest {
         assertEquals(carNumber + 1, higherPositionRateParkingLot.getCurStock());
     }
 
-
-
-    @Test
-    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws FetchException, ParkingException {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-        Car parkedCar = new Car();
-        superSmartParkingBoy.park(parkedCar);
-        Ticket wrongTicket = new Ticket();
-
-        //when
-        Car fetchCar = superSmartParkingBoy.fetch(wrongTicket);
-
-        //then
-        assertNull(fetchCar);
-    }
-
-    @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-
-        //when
-        Ticket usedTicket = superSmartParkingBoy.park(new Car());
-        superSmartParkingBoy.fetch(usedTicket);
-        Car fetchAgainCar = superSmartParkingBoy.fetch(usedTicket);
-        Throwable exception = assertThrows(FetchException.class, () -> {
-            superSmartParkingBoy.fetch(usedTicket);
-        });
-
-        //then
-        assertNull(fetchAgainCar);
-        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
-    }
 }
 
