@@ -137,7 +137,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
+    void should_return_unrecognized_parking_ticket_when_fetch_car_given_the_used_ticket() throws FetchException, ParkingException {
         //given
 
         //when
@@ -145,7 +145,6 @@ class ParkingBoyTest {
         parkingBoy.fetch(usedTicket);
         Throwable exception = assertThrows(FetchException.class, () -> {
             Car fetchAgainCar = parkingBoy.fetch(usedTicket);
-            assertNull(fetchAgainCar);
         });
 
         //then
