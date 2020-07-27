@@ -68,22 +68,7 @@ class ParkingBoyTest {
         }
     }
 
-    @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
-        //given
 
-        //when
-        Ticket usedTicket = parkingBoy.park(new Car());
-        parkingBoy.fetch(usedTicket);
-        Throwable exception = assertThrows(FetchException.class, () -> {
-            Car fetchAgainCar = parkingBoy.fetch(usedTicket);
-            assertNull(fetchAgainCar);
-        });
-
-        //then
-        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
-
-    }
 
     @Test
     void should_fetch_null_car_when_fetch_given_no_ticket() {
@@ -98,8 +83,6 @@ class ParkingBoyTest {
 
         }
     }
-
-
 
     @Test
     void should_return_not_enough_position_when_park_car_given_full_parking_lot() {
@@ -153,4 +136,20 @@ class ParkingBoyTest {
         Assertions.assertEquals(NOTTICKET.getError(), exception.getMessage());
     }
 
+    @Test
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
+        //given
+
+        //when
+        Ticket usedTicket = parkingBoy.park(new Car());
+        parkingBoy.fetch(usedTicket);
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            Car fetchAgainCar = parkingBoy.fetch(usedTicket);
+            assertNull(fetchAgainCar);
+        });
+
+        //then
+        Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
+
+    }
 }
