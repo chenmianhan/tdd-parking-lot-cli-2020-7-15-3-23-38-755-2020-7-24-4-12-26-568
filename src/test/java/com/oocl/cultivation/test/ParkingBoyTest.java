@@ -68,6 +68,19 @@ class ParkingBoyTest {
         }
     }
 
+    @Test
+    void should_fetch_car_when_fetching_car_given_ticket() throws FetchException, ParkingException {
+        //given
+        Car parkedCar = new Car();
+        Ticket carTicket = parkingBoy.park(parkedCar);
+
+        //when
+        Car fetchedCar = parkingBoy.fetch(carTicket);
+
+        //then
+        assertNotNull(fetchedCar);
+        assertEquals(fetchedCar, parkedCar);
+    }
 
 
     @Test

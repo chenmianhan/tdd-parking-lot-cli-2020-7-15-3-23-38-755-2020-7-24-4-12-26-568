@@ -35,24 +35,6 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_car_when_fetching_car_given_ticket() throws FetchException, ParkingException {
-        //given
-        List<ParkingLot> parkingLots = new LinkedList<>();
-        parkingLots.add(new ParkingLot());
-        parkingLots.add(new ParkingLot());
-        Car parkedCar = new Car();
-        SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-        Ticket carTicket = superSmartParkingBoy.park(parkedCar);
-
-        //when
-        Car fetchedCar = superSmartParkingBoy.fetch(carTicket);
-
-        //then
-        assertNotNull(fetchedCar);
-        assertEquals(fetchedCar, parkedCar);
-    }
-
-    @Test
     void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() throws FetchException, ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
