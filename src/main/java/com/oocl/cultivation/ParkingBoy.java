@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MultiplyParkingLotParkingBoy {
+public class ParkingBoy {
     protected final MessageRecord errorMessageRecord;
     protected final List<ParkingLot> parkingLots;
     protected final Map<Ticket, ParkingLot> ticketParkingLotMap;
-    public MultiplyParkingLotParkingBoy(List<ParkingLot> parkingLots) {
+    public ParkingBoy(List<ParkingLot> parkingLots) {
         errorMessageRecord=new ErrorMessageRecord();
         this.parkingLots=parkingLots;
         ticketParkingLotMap = new HashMap<>();

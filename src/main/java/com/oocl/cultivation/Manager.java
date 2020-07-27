@@ -4,26 +4,26 @@ package com.oocl.cultivation;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Manager extends MultiplyParkingLotParkingBoy {
-    private List<MultiplyParkingLotParkingBoy> multiplyParkingLotParkingBoys = new LinkedList<>();
+public class Manager extends ParkingBoy {
+    private List<ParkingBoy> parkingBoys = new LinkedList<>();
 
     public Manager(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
 
-    public void addParkingBoy(MultiplyParkingLotParkingBoy parkingBoy) {
-        multiplyParkingLotParkingBoys.add(parkingBoy);
+    public void addParkingBoy(ParkingBoy parkingBoy) {
+        parkingBoys.add(parkingBoy);
     }
 
-    public List<MultiplyParkingLotParkingBoy> getParkingBotList() {
-        return multiplyParkingLotParkingBoys;
+    public List<ParkingBoy> getParkingBotList() {
+        return parkingBoys;
     }
 
-    public Ticket park(MultiplyParkingLotParkingBoy parkingBoy, Car car) {
+    public Ticket park(ParkingBoy parkingBoy, Car car) {
         return parkingBoy.park(car);
     }
 
-    public Car fetch(MultiplyParkingLotParkingBoy parkingBoy, Ticket ticket) {
+    public Car fetch(ParkingBoy parkingBoy, Ticket ticket) {
         return parkingBoy.fetch(ticket);
     }
 }

@@ -15,14 +15,14 @@ class ManagerTest {
     void should_return_true_when_add_a_parking_boy_to_manage_list_when_given_a_parking_boy() {
         //given
         Manager parkingManager = new Manager(new LinkedList<>());
-        MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(new LinkedList<>());
+        ParkingBoy parkingBoy = new ParkingBoy(new LinkedList<>());
 
         //when
         parkingManager.addParkingBoy(parkingBoy);
 
         //then
-        List<MultiplyParkingLotParkingBoy> multiplyParkingLotParkingBoys = parkingManager.getParkingBotList();
-        assertEquals(parkingBoy, multiplyParkingLotParkingBoys.get(multiplyParkingLotParkingBoys.size() - 1));
+        List<ParkingBoy> parkingBoys = parkingManager.getParkingBotList();
+        assertEquals(parkingBoy, parkingBoys.get(parkingBoys.size() - 1));
     }
 
     @Test
@@ -31,7 +31,7 @@ class ManagerTest {
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
-        MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         parkingManager.addParkingBoy(parkingBoy);
 
         //when
@@ -47,7 +47,7 @@ class ManagerTest {
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
-        MultiplyParkingLotParkingBoy parkingBoy = new MultiplyParkingLotParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         parkingManager.addParkingBoy(parkingBoy);
         Car parkedCar = new Car();
 
