@@ -141,7 +141,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_no_provide_the_ticket_and_query_message() {
+    void should_return_please_provide_your_parking_ticket_when_fetch_car_given_no_ticket() {
         //given
 
         //when
