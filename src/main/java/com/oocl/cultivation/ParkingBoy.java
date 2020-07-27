@@ -30,7 +30,7 @@ public class ParkingBoy implements Parkable {
 
     @Override
     public Ticket park(Car car) throws ParkingException {
-        if (isAllFull()) {
+        if (!isNotFull()) {
             throw new ParkingException(NOTSPACE.getError());
         }
         return parkingStrategy(car);
@@ -38,6 +38,9 @@ public class ParkingBoy implements Parkable {
 
     @Override
     public boolean isNotFull() {
+        for (Parkable parkable : parkables) {
+            if (parkable.isNotFull()) return true;
+        }
         return false;
     }
 
@@ -52,12 +55,6 @@ public class ParkingBoy implements Parkable {
         return null;
     }
 
-    private boolean isAllFull() {
-        for (Parkable parkable : parkables) {
-            if (parkable.isNotFull()) return false;
-        }
-        return true;
-    }
 
     private boolean isTicketRight(Ticket carTicket) {
         return ticketParkingLotMap.containsKey(carTicket);
