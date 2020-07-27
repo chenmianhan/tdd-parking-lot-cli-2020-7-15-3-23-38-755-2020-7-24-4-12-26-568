@@ -50,8 +50,6 @@ class ParkingBoyTest {
         assertEquals(1, parkingLots.get(1).getCurStock());
     }
 
-
-
     @Test
     void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws ParkingException {
         //given
@@ -77,7 +75,6 @@ class ParkingBoyTest {
         //when
         Ticket usedTicket = parkingBoy.park(new Car());
         parkingBoy.fetch(usedTicket);
-
         Throwable exception = assertThrows(FetchException.class, () -> {
             Car fetchAgainCar = parkingBoy.fetch(usedTicket);
             assertNull(fetchAgainCar);
@@ -100,21 +97,9 @@ class ParkingBoyTest {
         } catch (FetchException fetchException) {
 
         }
-
     }
 
-    @Test
-    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_no_provide_the_ticket_and_query_message() {
-        //given
 
-        //when
-        Throwable exception = assertThrows(FetchException.class, () -> {
-            parkingBoy.fetch(null);
-        });
-
-        //then
-        Assertions.assertEquals(NOTTICKET.getError(), exception.getMessage());
-    }
 
     @Test
     void should_return_not_enough_position_when_park_car_then_parking_lot_full_and_query_message() {
@@ -153,6 +138,19 @@ class ParkingBoyTest {
 
         //then
         Assertions.assertEquals(WRONGTICKET.getError(), exception.getMessage());
+    }
+
+    @Test
+    void should_return_please_provide_your_parking_ticket_when_fetch_car_then_no_provide_the_ticket_and_query_message() {
+        //given
+
+        //when
+        Throwable exception = assertThrows(FetchException.class, () -> {
+            parkingBoy.fetch(null);
+        });
+
+        //then
+        Assertions.assertEquals(NOTTICKET.getError(), exception.getMessage());
     }
 
 }
