@@ -19,7 +19,7 @@ public class Manager extends ParkingBoy {
         return parkingBoys;
     }
 
-    public Ticket park(ParkingBoy parkingBoy, Car car) {
+    public Ticket park(ParkingBoy parkingBoy, Car car) throws ParkingException {
         return parkingBoy.park(car);
     }
 

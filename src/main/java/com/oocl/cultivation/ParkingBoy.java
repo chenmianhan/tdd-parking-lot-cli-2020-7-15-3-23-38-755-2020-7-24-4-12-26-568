@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.oocl.cultivation.ErrorMessage.NOTTICKET;
-import static com.oocl.cultivation.ErrorMessage.WRONGTICKET;
+import static com.oocl.cultivation.ErrorMessage.*;
 
 public class ParkingBoy {
     protected final List<ParkingLot> parkingLots;
@@ -27,9 +26,9 @@ public class ParkingBoy {
     }
 
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws ParkingException {
         if (isAllFull()) {
-            return null;
+            throw new ParkingException(NOTSPACE.getError());
         }
         return parkingStrategy(car);
     }

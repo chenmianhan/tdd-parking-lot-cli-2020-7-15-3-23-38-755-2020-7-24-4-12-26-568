@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SuperSmartParkingBoyTest {
     @Test
-    void should_park_at_larger_available_position_rate_parking_lot_when_parking_a_car_given_two_different_position_rate_parking_lot() {
+    void should_park_at_larger_available_position_rate_parking_lot_when_parking_a_car_given_two_different_position_rate_parking_lot() throws ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         ParkingLot higherPositionRateParkingLot = new ParkingLot(20);
@@ -35,7 +35,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_car_when_fetching_car_given_ticket() throws FetchException {
+    void should_fetch_car_when_fetching_car_given_ticket() throws FetchException, ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -53,7 +53,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() throws FetchException {
+    void should_fetch_correspond_ticket_when_fetch_car_given_correspond_ticket() throws FetchException, ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -83,7 +83,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws FetchException {
+    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws FetchException, ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());
@@ -101,7 +101,7 @@ class SuperSmartParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException {
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
         //given
         List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(new ParkingLot());

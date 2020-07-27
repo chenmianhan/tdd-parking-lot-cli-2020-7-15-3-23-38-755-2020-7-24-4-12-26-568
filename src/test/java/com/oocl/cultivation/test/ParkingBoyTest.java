@@ -24,7 +24,7 @@ class ParkingBoyTest {
         parkingBoy = new ParkingBoy(parkingLots);
     }
     @Test
-    void should_parking_at_the_first_parking_lot_when_parking_car_given_five_cars() {
+    void should_parking_at_the_first_parking_lot_when_parking_car_given_five_cars() throws ParkingException {
         //given
         int carNumber = 5;
         //when
@@ -37,7 +37,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_parking_at_the_second_parking_lot_when_parking_car_given_the_first_parking_lot_full_11_cars() {
+    void should_parking_at_the_second_parking_lot_when_parking_car_given_the_first_parking_lot_full_11_cars() throws ParkingException {
         //given
         int carNumber = 11;
 
@@ -53,7 +53,7 @@ class ParkingBoyTest {
 
 
     @Test
-    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() {
+    void should_fetch_null_car_when_fetch_given_a_wrong_ticket() throws ParkingException {
         //given
         Car parkedCar = new Car();
         parkingBoy.park(parkedCar);
@@ -71,7 +71,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException {
+    void should_fetch_null_car_and_return_unrecognized_parking_ticket_when_fetch_car_then_provide_the_used_ticket_and_query_message() throws FetchException, ParkingException {
         //given
 
         //when
@@ -142,7 +142,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() {
+    void should_return_unrecognized_parking_ticket_when_fetch_car_then_not_provide_the_right_ticket_and_query_message() throws ParkingException {
         //given
 
         //when

@@ -26,7 +26,7 @@ class ManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_specify_a_parking_boy_parking_car_given_a_car() {
+    void should_return_ticket_when_specify_a_parking_boy_parking_car_given_a_car() throws ParkingException {
         //given
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
@@ -42,7 +42,7 @@ class ManagerTest {
     }
 
     @Test
-    void should_return_car_when_specify_a_parking_boy_fetch_a_car_given_having_been_parked_car() throws FetchException {
+    void should_return_car_when_specify_a_parking_boy_fetch_a_car_given_having_been_parked_car() throws FetchException, ParkingException {
         //given
         Manager parkingManager = new Manager(new LinkedList<>());
         List<ParkingLot> parkingLots = new LinkedList<>();
