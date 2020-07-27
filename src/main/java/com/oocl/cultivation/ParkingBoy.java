@@ -6,7 +6,7 @@ import java.util.Map;
 
 import static com.oocl.cultivation.ErrorMessage.*;
 
-public class ParkingBoy {
+public class ParkingBoy implements Parkable {
     protected final List<ParkingLot> parkingLots;
     protected final Map<Ticket, ParkingLot> ticketParkingLotMap;
     public ParkingBoy(List<ParkingLot> parkingLots) {
@@ -25,7 +25,7 @@ public class ParkingBoy {
         return targetParkingLot.fetch(ticket);
     }
 
-
+    @Override
     public Ticket park(Car car) throws ParkingException {
         if (isAllFull()) {
             throw new ParkingException(NOTSPACE.getError());
